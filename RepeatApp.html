@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RepetitionSite</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #333;
+        }
+        .start-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .start-btn:hover {
+            background-color: #0056b3;
+        }
+        .container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        textarea, select, button {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/brython@3.9.5/brython.min.js"></script>
+</head>
+<body onload="brython()">
+    <h1>RepetitionApp</h1>
+    <div class="container">
+        <textarea id="textInput" rows="4" cols="50" placeholder="Enter text here"></textarea>
+        <select id="repeatCount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button onclick="repeatText()">Start</button>
+        <p id="result"></p>
+    </div>
+    <script type="text/python">
+        from browser import document
+
+        def repeatText(event):
+            text = document["textInput"].value
+            count = int(document["repeatCount"].value)
+            result = text * count
+            document["result"].text = result
+
+        document["textInput"].bind("input", repeatText)
+    </script>
+</body>
+</html>
